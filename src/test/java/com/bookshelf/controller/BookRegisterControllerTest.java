@@ -18,10 +18,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class BookResistorControllerTest {
+public class BookRegisterControllerTest {
 
     @Autowired
-    BookResistorController bookResistorController;
+    BookRegisterController bookRegisterController;
 
     @Autowired
     ObjectMapper objectMapper;
@@ -32,7 +32,7 @@ public class BookResistorControllerTest {
 
     @Before
     public void setup() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(new BookResistorController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new BookRegisterController()).build();
         BookDto bookDto = new BookDto("Effective Java", "IT");
         requestJson = objectMapper.writeValueAsString(bookDto);
     }

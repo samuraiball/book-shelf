@@ -8,7 +8,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/book")
-public class BookResistorController {
+public class BookRegisterController {
 
     @PostMapping("/registration")
     @ResponseStatus(value = HttpStatus.CREATED)

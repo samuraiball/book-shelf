@@ -3,9 +3,6 @@ package com.bookshelf.dto;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -17,8 +14,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
 public class BookDtoTest {
 
     private Validator validator;
