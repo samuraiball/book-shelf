@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info: 
+  title: register books
+  version: 0.0.1
+servers:
+  - url: http:localhost:8081
+    description: local execution
+paths:
+  /register:
+    summary: Register a book.
+    post:
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+             $ref: "#/components/schemas/books"
+      responses: 
+        '201':
+          description: the book successfully registered
+
+components: 
+  schemas:
+    books: 
+      type: object
+      properties:
+        name: 
+          type: string
+          example: Effective Java
+        genre: 
+          type: string
+          example: engineering
+      required:
+       - name
+       - genre
