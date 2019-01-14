@@ -24,12 +24,12 @@ components:
     books: 
       type: object
       properties:
-        name: 
+        title:
           type: string
           example: Effective Java
         genre: 
           type: string
           example: engineering
       required:
-       - name
+       - title
        - genre
