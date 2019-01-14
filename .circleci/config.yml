@@ -1,7 +1,20 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/circleci-java-spring
     docker:
-      - image: circleci/node:8.11.3
+      - image: circleci/openjdk:8-jdk-browsers
     steps:
-      - run: echo "Hello World "
+      - checkout
+      - restore_cache:
+          key: circleci-java-spring-{{checksum "pom.xml"}}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: circleci-java-spring-{{checksum "pom.xml"}}
+      - run: mvn package
+      - store_test_results:
+          path: target/surefire-reports
+      - store_artifacts:
+          path: target/java-spring-0.0.1-SNAPSHOT.jar
