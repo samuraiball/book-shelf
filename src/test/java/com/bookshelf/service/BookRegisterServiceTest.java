@@ -34,7 +34,7 @@ public class BookRegisterServiceTest {
 
     @Test
     public void 正常(){
-        bookResistorService.resistorBook(bookEntity);
+        bookResistorService.registerBook(bookEntity);
         verify(bookResistorRepository,times(1)).insert(bookEntity);
     }
 }

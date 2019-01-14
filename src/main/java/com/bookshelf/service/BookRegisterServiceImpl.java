@@ -12,8 +12,8 @@ public class BookRegisterServiceImpl implements BookRegisterService {
     BookRegisterRepository bookResistorRepository;
 
     @Override
-    public int resistorBook(BookEntity bookEntity){
-       return bookResistorRepository.insert(bookEntity);
+    public int registerBook(BookEntity bookEntity) {
+        return bookResistorRepository.insert(bookEntity);
     }
 
 }
