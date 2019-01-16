@@ -3,12 +3,12 @@ package com.bookshelf.entity;
 import org.seasar.doma.*;
 
 @Entity
+@Table(name = "books")
 public class BookEntity {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
+    int id;
 
     String name;
 
