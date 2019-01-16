@@ -1,13 +1,9 @@
 package com.bookshelf.repository;
 
 import com.bookshelf.entity.BookEntity;
-import org.seasar.doma.Dao;
-import org.seasar.doma.Insert;
-import org.seasar.doma.boot.ConfigAutowireable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@Dao
-@ConfigAutowireable
-public interface BookRegisterRepository {
-    @Insert
-    int insert(BookEntity bookEntity);
+@Repository
+public interface BookRegisterRepository extends JpaRepository<BookEntity, Integer> {
 }

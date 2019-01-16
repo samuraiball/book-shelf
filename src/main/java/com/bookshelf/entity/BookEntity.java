@@ -1,6 +1,10 @@
 package com.bookshelf.entity;
 
-import org.seasar.doma.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "books")
@@ -10,8 +14,10 @@ public class BookEntity {
     @Id
     int id;
 
+    @Column
     String name;
 
+    @Column
     String genre;
 
 

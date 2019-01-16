@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 public class BookRegisterServiceImpl implements BookRegisterService {
 
     @Autowired
-    BookRegisterRepository bookResistorRepository;
+    private BookRegisterRepository bookRegisterRepository;
 
     @Override
-    public int registerBook(BookEntity bookEntity) {
-        return bookResistorRepository.insert(bookEntity);
+    public BookEntity registerBook(BookEntity bookEntity) {
+        return bookRegisterRepository.saveAndFlush(bookEntity);
     }
 
 }

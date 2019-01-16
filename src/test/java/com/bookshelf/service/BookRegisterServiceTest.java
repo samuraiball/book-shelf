@@ -26,15 +26,14 @@ public class BookRegisterServiceTest {
     private BookEntity bookEntity = new BookEntity();
 
     @Before
-    public void setUp(){
-
-        when(bookResistorRepository.insert(bookEntity)).thenReturn(1);
+    public void setUp() {
+        when(bookResistorRepository.saveAndFlush(bookEntity)).thenReturn(bookEntity);
 
     }
 
     @Test
-    public void 正常(){
+    public void 正常() {
         bookResistorService.registerBook(bookEntity);
-        verify(bookResistorRepository,times(1)).insert(bookEntity);
+        verify(bookResistorRepository, times(1)).saveAndFlush(bookEntity);
     }
 }

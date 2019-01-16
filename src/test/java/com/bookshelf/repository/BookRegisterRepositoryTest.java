@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
 
 import java.util.Map;
 
@@ -39,8 +38,10 @@ public class BookRegisterRepositoryTest {
     @Test
     @Sql("classpath:META-INF/sql/delete-data.sql")
     public void 正常(){
-        bookRegisterRepository.insert(bookEntity);
-        Map result =  jdbcTemplate.queryForMap("SELECT * FROM books");
+        BookEntity book = bookRegisterRepository.saveAndFlush(bookEntity);
+
+        Map result =  jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + book.getId());
+        System.out.println("result = " + result);
 
         assertThat(result.get("id"),is(0));
         assertThat(result.get("name"),is("Effective Java"));
