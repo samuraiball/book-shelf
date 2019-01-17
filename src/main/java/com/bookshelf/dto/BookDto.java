@@ -8,6 +8,24 @@ import java.io.Serializable;
  */
 public class BookDto implements Serializable {
 
+
+    private long id;
+
+    @NotEmpty
+    private String title;
+
+    @NotEmpty
+    private String genre;
+
+    public BookDto(){
+    }
+
+    public BookDto(Long id, String title, String genre){
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -16,19 +34,13 @@ public class BookDto implements Serializable {
         this.genre = genre;
     }
 
-    @NotEmpty
-    private String title;
 
-    @NotEmpty
-    private String genre;
-
-
-    public BookDto(){
+    public long getId() {
+        return id;
     }
 
-    public BookDto(String title, String genre) {
-        this.title = title;
-        this.genre = genre;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {

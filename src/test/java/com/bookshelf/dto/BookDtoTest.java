@@ -22,7 +22,7 @@ public class BookDtoTest {
     @Before
     public void setUp() {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
-        bookDto = new  BookDto("Effective Java", "IT");
+        bookDto = new  BookDto(0L,"Effective Java", "IT");
     }
 
     @Test

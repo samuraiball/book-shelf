@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -27,13 +29,20 @@ public class BookRegisterServiceTest {
 
     @Before
     public void setUp() {
-        when(bookResistorRepository.saveAndFlush(bookEntity)).thenReturn(bookEntity);
 
     }
 
     @Test
-    public void 正常() {
+    public void 正常_insert_book() {
+        when(bookResistorRepository.saveAndFlush(bookEntity)).thenReturn(bookEntity);
         bookResistorService.registerBook(bookEntity);
         verify(bookResistorRepository, times(1)).saveAndFlush(bookEntity);
+    }
+
+    @Test
+    public void 正常_find_book_by_id(){
+        when(bookResistorRepository.findById(any())).thenReturn(any());
+        bookResistorService.findBookById(0L);
+        verify(bookResistorRepository, times(1)).findById(0L);
     }
 }

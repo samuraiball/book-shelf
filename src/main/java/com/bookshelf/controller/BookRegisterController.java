@@ -24,7 +24,7 @@ public class BookRegisterController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, UriComponentsBuilder uriBuilder) {
         BookEntity bookEntity = new BookEntity();
-        bookEntity.setName(bookDto.getTitle());
+        bookEntity.setTitle(bookDto.getTitle());
         bookEntity.setGenre(bookDto.getGenre());
 
         BookEntity book = bookRegisterService.registerBook(bookEntity);
@@ -40,6 +40,6 @@ public class BookRegisterController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
     public ResponseEntity getBook(@PathVariable long bookId){
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(bookRegisterService.findBookById(bookId),HttpStatus.OK);
     }
 }

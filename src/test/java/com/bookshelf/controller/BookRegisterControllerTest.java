@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -39,7 +37,7 @@ public class BookRegisterControllerTest {
 
     private MockMvc mockMvc;
 
-    private String requestJson;
+    private String bookJsonString;
 
     private BookEntity bookEntity;
 
@@ -47,11 +45,11 @@ public class BookRegisterControllerTest {
     public void setup() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(bookRegisterController).build();
 
-        bookEntity = new BookEntity();
-        bookEntity.setId(0);
+        bookEntity = new BookEntity(0L ,"Effective Java", "IT");
 
-        BookDto bookDto = new BookDto("Effective Java", "IT");
-        requestJson = objectMapper.writeValueAsString(bookDto);
+        BookDto bookDto = new BookDto(0L ,"Effective Java", "IT");
+        bookJsonString = objectMapper.writeValueAsString(bookDto);
+
 
     }
 
@@ -62,7 +60,7 @@ public class BookRegisterControllerTest {
 
         mockMvc.perform(post("/book")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(requestJson))
+                .content(bookJsonString))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "http://localhost/book/" + bookEntity.getId()));
     }
@@ -70,7 +68,10 @@ public class BookRegisterControllerTest {
     @Test
     public void 正常系_本の取得_200のレスポンス() throws Exception{
 
+        when(bookRegisterService.findBookById(0L)).thenReturn(bookEntity);
+
         mockMvc.perform(get("/book/0"))
+                .andExpect(content().json(bookJsonString))
                 .andExpect(status().isOk());
     }
 

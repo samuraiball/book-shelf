@@ -16,4 +16,10 @@ public class BookRegisterServiceImpl implements BookRegisterService {
         return bookRegisterRepository.saveAndFlush(bookEntity);
     }
 
+    @Override
+    public BookEntity findBookById(long bookId) {
+        return bookRegisterRepository.findById(bookId);
+    }
+
+
 }

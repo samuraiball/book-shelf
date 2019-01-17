@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: booking books
+  title: booking a book
   version: 0.0.1
 servers:
   - url: http:localhost:8081

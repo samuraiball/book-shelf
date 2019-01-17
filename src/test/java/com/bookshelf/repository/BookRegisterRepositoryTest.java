@@ -29,23 +29,33 @@ public class BookRegisterRepositoryTest {
     private BookEntity bookEntity;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         bookEntity = new BookEntity();
-        bookEntity.setName("Effective Java");
+        bookEntity.setTitle("Effective Java");
         bookEntity.setGenre("IT");
     }
 
     @Test
-    @Sql("classpath:META-INF/sql/delete-data.sql")
-    public void 正常(){
+    @Sql("classpath:META-INF/sql/init-tables.sql")
+    public void 正常_Insert_Book() {
         BookEntity book = bookRegisterRepository.saveAndFlush(bookEntity);
 
-        Map result =  jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + book.getId());
+        Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + book.getId());
         System.out.println("result = " + result);
 
-        assertThat(result.get("id"),is(0));
-        assertThat(result.get("name"),is("Effective Java"));
-        assertThat(result.get("genre"),is("IT"));
+        assertThat(result.get("id"), is(1L));
+        assertThat(result.get("title"), is("Effective Java"));
+        assertThat(result.get("genre"), is("IT"));
 
+    }
+
+    @Test
+    @Sql("classpath:META-INF/sql/init-tables.sql")
+    public void 正常_find_book_by_id() {
+        BookEntity result = bookRegisterRepository.findById(0L);
+
+        assertThat(result.getId(), is(0L));
+        assertThat(result.getTitle(), is("WebAPI: The Good Part"));
+        assertThat(result.getGenre(), is("IT"));
     }
 }
