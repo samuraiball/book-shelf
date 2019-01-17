@@ -1,25 +1,45 @@
 openapi: 3.0.0
-info: 
-  title: register books
+info:
+  title: booking a book
   version: 0.0.1
 servers:
   - url: http:localhost:8081
     description: local execution
 paths:
-  /register:
+  /book:
     summary: Register a book.
     post:
       requestBody:
         required: true
-        content: 
+        content:
           application/json:
             schema:
-             $ref: "#/components/schemas/book"
-      responses: 
+              $ref: "#/components/schemas/book"
+      responses:
         '201':
           description: the book successfully registered
+  /book/{bookId}:
+    get:
+      summary: get a book by ID
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: parameter that to difine the book.
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+      responses:
+        '200':
+          description: book defined by ID
+          content:
+            appication/json:
+              schema:
+                $ref: "#/components/schemas/get_book"
 
-components: 
+
+components:
   schemas:
     book:
       type: object
@@ -27,9 +47,21 @@ components:
         title:
           type: string
           example: Effective Java
-        genre: 
+        genre:
           type: string
-          example: engineering
+          example: IT
       required:
-       - title
-       - genre
+        - title
+        - genre
+    get_book:
+      type: object
+      properties:
+        bookId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Effective Java
+        genre:
+          type: string
+          example: IT
