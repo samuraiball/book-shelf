@@ -3,16 +3,13 @@ package com.bookshelf.service;
 
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.repository.BookRegisterRepository;
-import com.exception.ResourceNotFoundException;
-import org.junit.Before;
+import com.bookshelf.exception.ResourceNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -28,10 +25,6 @@ public class BookRegisterServiceTest {
 
     private BookEntity bookEntity = new BookEntity();
 
-    @Before
-    public void setUp() {
-
-    }
 
     @Test
     public void 正常_insert_book() {
@@ -42,7 +35,7 @@ public class BookRegisterServiceTest {
 
     @Test
     public void 正常_find_book_by_id() {
-        when(bookResistorRepository.findById(any())).thenReturn(any());
+        when(bookResistorRepository.findById(0L)).thenReturn(bookEntity);
         bookResistorService.findBookById(0L);
         verify(bookResistorRepository, times(1)).findById(0L);
     }

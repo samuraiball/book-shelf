@@ -3,7 +3,7 @@ package com.bookshelf.controller;
 import com.bookshelf.dto.BookDto;
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.service.BookRegisterService;
-import com.exception.ResourceNotFoundException;
+import com.bookshelf.exception.ResourceNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
