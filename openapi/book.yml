@@ -14,14 +14,14 @@ paths:
         content: 
           application/json:
             schema:
-             $ref: "#/components/schemas/books"
+             $ref: "#/components/schemas/book"
       responses: 
         '201':
           description: the book successfully registered
 
 components: 
   schemas:
-    books: 
+    book:
       type: object
       properties:
         title:
