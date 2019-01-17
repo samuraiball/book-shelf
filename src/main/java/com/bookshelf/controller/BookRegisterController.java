@@ -37,4 +37,9 @@ public class BookRegisterController {
         headers.setLocation(location);
         return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
+    public ResponseEntity getBook(@PathVariable long bookId){
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

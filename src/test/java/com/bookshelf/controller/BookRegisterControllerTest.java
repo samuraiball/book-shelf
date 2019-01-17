@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -55,7 +56,7 @@ public class BookRegisterControllerTest {
     }
 
     @Test
-    public void 正常系_201のレスポンス() throws Exception {
+    public void 正常系_本の登録_201のレスポンス() throws Exception {
 
         when(bookRegisterService.registerBook(any())).thenReturn(bookEntity);
 
@@ -64,6 +65,13 @@ public class BookRegisterControllerTest {
                 .content(requestJson))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "http://localhost/book/" + bookEntity.getId()));
+    }
+
+    @Test
+    public void 正常系_本の取得_200のレスポンス() throws Exception{
+
+        mockMvc.perform(get("/book/0"))
+                .andExpect(status().isOk());
     }
 
 }
