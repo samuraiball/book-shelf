@@ -3,11 +3,13 @@ package com.bookshelf.controller;
 import com.bookshelf.dto.BookDto;
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.service.BookRegisterService;
+import com.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -40,6 +42,10 @@ public class BookRegisterController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
     public ResponseEntity getBook(@PathVariable long bookId){
-        return new ResponseEntity<>(bookRegisterService.findBookById(bookId),HttpStatus.OK);
+        try {
+           return new ResponseEntity<>(bookRegisterService.findBookById(bookId),HttpStatus.OK);
+        } catch (ResourceNotFoundException e) {
+           throw new  ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+        }
     }
 }

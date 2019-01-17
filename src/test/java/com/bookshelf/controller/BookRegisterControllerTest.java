@@ -3,6 +3,7 @@ package com.bookshelf.controller;
 import com.bookshelf.dto.BookDto;
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.service.BookRegisterService;
+import com.exception.ResourceNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -73,6 +74,15 @@ public class BookRegisterControllerTest {
         mockMvc.perform(get("/book/0"))
                 .andExpect(content().json(bookJsonString))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void 異常_本が見つからなかった_404() throws Exception{
+
+        when(bookRegisterService.findBookById(0L)).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get("/book/0"))
+                .andExpect(status().isNotFound());
     }
 
 }

@@ -3,6 +3,7 @@ package com.bookshelf.service;
 
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.repository.BookRegisterRepository;
+import com.exception.ResourceNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,9 +41,15 @@ public class BookRegisterServiceTest {
     }
 
     @Test
-    public void 正常_find_book_by_id(){
+    public void 正常_find_book_by_id() {
         when(bookResistorRepository.findById(any())).thenReturn(any());
         bookResistorService.findBookById(0L);
         verify(bookResistorRepository, times(1)).findById(0L);
+    }
+
+    @Test(expected = ResourceNotFoundException.class)
+    public void 異常_find_book_by_id_本が見つからなかった(){
+        when(bookResistorRepository.findById(any())).thenReturn(null);
+        bookResistorService.findBookById(0L);
     }
 }
