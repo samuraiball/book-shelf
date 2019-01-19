@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: booking a book
+  title: register books
   version: 0.0.1
 servers:
   - url: http:localhost:8081
@@ -37,6 +37,20 @@ paths:
             appication/json:
               schema:
                 $ref: "#/components/schemas/get_book"
+    delete:
+      summary: delete a book
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: parameter that to difine to delete tha book
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+      responses:
+        '204':
+          description: NO content
 
 
 components:
