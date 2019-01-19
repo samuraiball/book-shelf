@@ -1,6 +1,6 @@
-package com.bookshelf.unit.repository;
+package com.bookshelf.repository;
 
-import com.bookshelf.unit.entity.BookEntity;
+import com.bookshelf.entity.BookEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,11 +28,13 @@ public class BookRegisterRepositoryTest {
 
     private BookEntity bookEntity;
 
+    private String BOOK_ID = "550e8400-e29b-41d4-a716-446655440000";
+
+    private String REGISTER_BOOK_ID = "resis8400-e29b-41d4-a716-446655440000";
+
     @Before
     public void setUp() {
-        bookEntity = new BookEntity();
-        bookEntity.setTitle("Effective Java");
-        bookEntity.setGenre("IT");
+        bookEntity = new BookEntity(REGISTER_BOOK_ID,"Effective Java","IT");
     }
 
     @Test
@@ -41,9 +43,9 @@ public class BookRegisterRepositoryTest {
 
         BookEntity book = bookRegisterRepository.saveAndFlush(bookEntity);
 
-        Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + book.getId());
+        Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = ?", book.getId());
 
-        assertThat(result.get("id"), is(1L));
+        assertThat(result.get("id"), is(REGISTER_BOOK_ID));
         assertThat(result.get("title"), is("Effective Java"));
         assertThat(result.get("genre"), is("IT"));
         assertThat(result.get("is_active"), is(true));
@@ -53,11 +55,11 @@ public class BookRegisterRepositoryTest {
     @Test
     @Sql("classpath:META-INF/sql/init-tables.sql")
     public void 正常_find_book_by_id() {
-        BookEntity result = bookRegisterRepository.findById(0L);
 
-        assertThat(result.getId(), is(0L));
+        BookEntity result = bookRegisterRepository.findBookById(BOOK_ID);
+
+        assertThat(result.getId(), is(BOOK_ID));
         assertThat(result.getTitle(), is("WebAPI: The Good Part"));
         assertThat(result.getGenre(), is("IT"));
     }
-
 }

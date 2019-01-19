@@ -1,9 +1,8 @@
 package com.bookshelf.fonction;
 
 import com.bookshelf.exception.ResourceNotFoundException;
-import com.bookshelf.unit.entity.BookEntity;
-import com.bookshelf.unit.repository.BookRegisterRepository;
-import com.bookshelf.unit.service.BookRegisterService;
+import com.bookshelf.entity.BookEntity;
+import com.bookshelf.service.BookRegisterService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +27,7 @@ public class UpdateActivityTest {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    BookEntity bookEntity;
+     private BookEntity bookEntity;
 
     @Before
     public void setUp() {
@@ -40,22 +39,21 @@ public class UpdateActivityTest {
     public void 正常_削除フラグの更新() {
 
         BookEntity registerBook = bookRegisterService.registerBook(bookEntity);
-        Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + registerBook.getId());
+
+        Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = ?", registerBook.getId());
 
         assertThat(result.size() > 0, is(true));
         assertThat(result.get("is_active"), is(true));
 
         bookRegisterService.updateBookActivity(registerBook.getId());
 
-        Map updatedResult = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = "+ registerBook.getId());
+        Map updatedResult = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = ?", registerBook.getId());
         assertThat(updatedResult.get("is_active"), is(false));
     }
 
     @Test(expected = ResourceNotFoundException.class)
     @Sql("classpath:META-INF/sql/init-tables.sql")
     public void 異常_アクティビティフラグの更新_更新対象が見つからなかった() {
-        bookRegisterService.updateBookActivity(-1);
+        bookRegisterService.updateBookActivity("no_data");
     }
-
-
 }

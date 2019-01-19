@@ -1,4 +1,4 @@
-package com.bookshelf.unit.dto;
+package com.bookshelf.dto;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class BookDto implements Serializable {
 
 
-    private long id;
 
     @NotEmpty
     private String title;
@@ -20,8 +19,7 @@ public class BookDto implements Serializable {
     public BookDto(){
     }
 
-    public BookDto(Long id, String title, String genre){
-        this.id = id;
+    public BookDto(String title, String genre){
         this.title = title;
         this.genre = genre;
     }
@@ -32,15 +30,6 @@ public class BookDto implements Serializable {
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {

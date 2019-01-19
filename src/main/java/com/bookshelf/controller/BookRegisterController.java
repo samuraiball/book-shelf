@@ -1,8 +1,8 @@
-package com.bookshelf.unit.controller;
+package com.bookshelf.controller;
 
-import com.bookshelf.unit.dto.BookDto;
-import com.bookshelf.unit.entity.BookEntity;
-import com.bookshelf.unit.service.BookRegisterService;
+import com.bookshelf.dto.BookDto;
+import com.bookshelf.entity.BookEntity;
+import com.bookshelf.service.BookRegisterService;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,14 +34,13 @@ public class BookRegisterController {
                 .buildAndExpand(book.getId())
                 .toUri();
 
-        // レスポンスのHTTPヘッダー
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(location);
         return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
-    public ResponseEntity getBook(@PathVariable long bookId) {
+    public ResponseEntity getBook(@PathVariable String bookId) {
         try {
             return new ResponseEntity<>(bookRegisterService.findBookById(bookId), HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
@@ -51,11 +50,11 @@ public class BookRegisterController {
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{bookId}")
     @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
-    public void deleteBook(@PathVariable long bookId) {
+    public void deleteBook(@PathVariable String bookId) {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/activity/{bookId}")
-    public ResponseEntity changeActivity(@PathVariable long bookId) {
+    public ResponseEntity changeActivity(@PathVariable String bookId) {
         try {
             return new ResponseEntity<>(bookRegisterService.updateBookActivity(bookId), HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
