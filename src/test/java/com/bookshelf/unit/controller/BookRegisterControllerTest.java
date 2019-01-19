@@ -89,7 +89,7 @@ public class BookRegisterControllerTest {
     public void delete_正常_本の削除が正常に行われた() throws Exception {
 
         mockMvc.perform(delete("/book/0"))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isNotImplemented());
     }
 
     @Test
