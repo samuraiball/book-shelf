@@ -1,4 +1,4 @@
-package com.bookshelf.unit.dto;
+package com.bookshelf.dto;
 
 
 import org.junit.Before;
@@ -22,7 +22,7 @@ public class BookDtoTest {
     @Before
     public void setUp() {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
-        bookDto = new  BookDto(0L,"Effective Java", "IT");
+        bookDto = new  BookDto("Effective Java", "IT");
     }
 
     @Test

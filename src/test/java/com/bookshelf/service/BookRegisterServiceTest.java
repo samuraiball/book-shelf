@@ -1,8 +1,8 @@
-package com.bookshelf.unit.service;
+package com.bookshelf.service;
 
 
-import com.bookshelf.unit.entity.BookEntity;
-import com.bookshelf.unit.repository.BookRegisterRepository;
+import com.bookshelf.entity.BookEntity;
+import com.bookshelf.repository.BookRegisterRepository;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +30,7 @@ public class BookRegisterServiceTest {
 
     private BookEntity bookEntity = new BookEntity();
 
+    private String BOOK_ID ="550e8400-e29b-41d4-a716-446655440000";
 
     @Test
     public void 正常_insert_book() {
@@ -40,15 +41,15 @@ public class BookRegisterServiceTest {
 
     @Test
     public void 正常_find_book_by_id() {
-        when(bookResistorRepository.findById(0L)).thenReturn(bookEntity);
-        bookResistorService.findBookById(0L);
-        verify(bookResistorRepository, times(1)).findById(0L);
+        when(bookResistorRepository.findBookById(BOOK_ID)).thenReturn(bookEntity);
+        bookResistorService.findBookById(BOOK_ID);
+        verify(bookResistorRepository, times(1)).findBookById(BOOK_ID);
     }
 
     @Test(expected = ResourceNotFoundException.class)
     public void 異常_find_book_by_id_本が見つからなかった() {
-        when(bookResistorRepository.findById(any())).thenReturn(null);
-        bookResistorService.findBookById(0L);
+        when(bookResistorRepository.findBookById(any())).thenReturn(null);
+        bookResistorService.findBookById(BOOK_ID);
     }
 
 

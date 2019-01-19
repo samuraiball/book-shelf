@@ -1,10 +1,12 @@
-package com.bookshelf.unit.service;
+package com.bookshelf.service;
 
-import com.bookshelf.unit.entity.BookEntity;
-import com.bookshelf.unit.repository.BookRegisterRepository;
+import com.bookshelf.entity.BookEntity;
+import com.bookshelf.repository.BookRegisterRepository;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class BookRegisterServiceImpl implements BookRegisterService {
@@ -14,23 +16,24 @@ public class BookRegisterServiceImpl implements BookRegisterService {
 
     @Override
     public BookEntity registerBook(BookEntity bookEntity) {
+        bookEntity.setId(UUID.randomUUID().toString());
         return bookRegisterRepository.saveAndFlush(bookEntity);
     }
 
     @Override
-    public BookEntity findBookById(long bookId) {
-       BookEntity bookEntity = bookRegisterRepository.findById(bookId);
+    public BookEntity findBookById(String bookId) {
+       BookEntity bookEntity = bookRegisterRepository.findBookById(bookId);
        if (bookEntity == null)throw new ResourceNotFoundException("Resource cannot find");
         return bookEntity;
     }
 
     @Override
-    public BookEntity updateBookActivity(long bookId) {
-        BookEntity bookEntity = bookRegisterRepository.findById(bookId);
+    public BookEntity updateBookActivity(String bookId) {
+        BookEntity bookEntity = bookRegisterRepository.findBookById(bookId);
         if (bookEntity == null)throw new ResourceNotFoundException("Resource cannot find");
         bookEntity.toggleActive();
-        BookEntity UpdatedBookEntity = bookRegisterRepository.saveAndFlush(bookEntity);
-        return UpdatedBookEntity;
+        BookEntity updatedBookEntity = bookRegisterRepository.saveAndFlush(bookEntity);
+        return updatedBookEntity;
     }
 
 

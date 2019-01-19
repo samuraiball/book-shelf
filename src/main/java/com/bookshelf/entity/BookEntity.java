@@ -1,4 +1,4 @@
-package com.bookshelf.unit.entity;
+package com.bookshelf.entity;
 
 
 import javax.persistence.*;
@@ -10,8 +10,7 @@ public class BookEntity implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
 
     @Column
     private String title;
@@ -30,13 +29,13 @@ public class BookEntity implements Serializable {
         this.genre = genre;
     }
 
-    public BookEntity(long id, String title, String genre) {
+    public BookEntity(String id, String title, String genre) {
         this.id = id;
         this.title = title;
         this.genre = genre;
     }
 
-    public BookEntity(long id, String title, String genre, boolean isActive) {
+    public BookEntity(String id, String title, String genre, boolean isActive) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -59,8 +58,12 @@ public class BookEntity implements Serializable {
         this.genre = genre;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean isActive() {
