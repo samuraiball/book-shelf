@@ -6,4 +6,5 @@ public interface BookRegisterService {
     BookEntity registerBook(BookEntity bookEntity);
     BookEntity findBookById(String bookId);
     BookEntity updateBookActivity(String bookId);
+    void deleteBook(String bookId);
 }

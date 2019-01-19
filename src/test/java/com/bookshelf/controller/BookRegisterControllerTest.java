@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -60,7 +60,6 @@ public class BookRegisterControllerTest {
     public void create_正常系_本の登録_201のレスポンス() throws Exception {
 
         when(bookRegisterService.registerBook(any())).thenReturn(bookEntity);
-
         mockMvc.perform(post("/book")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(bookJsonStringRequest))
@@ -89,9 +88,16 @@ public class BookRegisterControllerTest {
 
     @Test
     public void delete_正常_本の削除が正常に行われた() throws Exception {
-
+        doNothing().when(bookRegisterService).deleteBook(BOOK_ID);
         mockMvc.perform(delete("/book/" + BOOK_ID))
-                .andExpect(status().isNotImplemented());
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void delete_異常_削除対象の本が見つからなかった() throws Exception {
+        doThrow(ResourceNotFoundException.class).when(bookRegisterService).deleteBook(BOOK_ID);
+        mockMvc.perform(delete("/book/" + BOOK_ID))
+                .andExpect(status().isNotFound());
     }
 
     @Test
