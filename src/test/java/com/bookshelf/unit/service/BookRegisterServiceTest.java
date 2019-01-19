@@ -1,15 +1,17 @@
-package com.bookshelf.service;
+package com.bookshelf.unit.service;
 
 
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.repository.BookRegisterRepository;
+import com.bookshelf.unit.entity.BookEntity;
+import com.bookshelf.unit.repository.BookRegisterRepository;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+
 
 import static org.mockito.Mockito.*;
 
@@ -22,6 +24,9 @@ public class BookRegisterServiceTest {
 
     @Autowired
     BookRegisterService bookResistorService;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     private BookEntity bookEntity = new BookEntity();
 
@@ -41,8 +46,10 @@ public class BookRegisterServiceTest {
     }
 
     @Test(expected = ResourceNotFoundException.class)
-    public void 異常_find_book_by_id_本が見つからなかった(){
+    public void 異常_find_book_by_id_本が見つからなかった() {
         when(bookResistorRepository.findById(any())).thenReturn(null);
         bookResistorService.findBookById(0L);
     }
+
+
 }

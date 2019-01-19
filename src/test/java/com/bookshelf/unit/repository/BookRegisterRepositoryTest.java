@@ -1,6 +1,6 @@
-package com.bookshelf.repository;
+package com.bookshelf.unit.repository;
 
-import com.bookshelf.entity.BookEntity;
+import com.bookshelf.unit.entity.BookEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,14 +38,15 @@ public class BookRegisterRepositoryTest {
     @Test
     @Sql("classpath:META-INF/sql/init-tables.sql")
     public void 正常_Insert_Book() {
+
         BookEntity book = bookRegisterRepository.saveAndFlush(bookEntity);
 
         Map result = jdbcTemplate.queryForMap("SELECT * FROM books WHERE id = " + book.getId());
-        System.out.println("result = " + result);
 
         assertThat(result.get("id"), is(1L));
         assertThat(result.get("title"), is("Effective Java"));
         assertThat(result.get("genre"), is("IT"));
+        assertThat(result.get("is_active"), is(true));
 
     }
 
@@ -58,4 +59,5 @@ public class BookRegisterRepositoryTest {
         assertThat(result.getTitle(), is("WebAPI: The Good Part"));
         assertThat(result.getGenre(), is("IT"));
     }
+
 }

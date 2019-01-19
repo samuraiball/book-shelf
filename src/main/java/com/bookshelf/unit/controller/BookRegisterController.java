@@ -1,8 +1,8 @@
-package com.bookshelf.controller;
+package com.bookshelf.unit.controller;
 
-import com.bookshelf.dto.BookDto;
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.service.BookRegisterService;
+import com.bookshelf.unit.dto.BookDto;
+import com.bookshelf.unit.entity.BookEntity;
+import com.bookshelf.unit.service.BookRegisterService;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +23,7 @@ public class BookRegisterController {
     private BookRegisterService bookRegisterService;
 
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, UriComponentsBuilder uriBuilder) {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(bookDto.getTitle());
@@ -41,11 +41,25 @@ public class BookRegisterController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
-    public ResponseEntity getBook(@PathVariable long bookId){
+    public ResponseEntity getBook(@PathVariable long bookId) {
         try {
-           return new ResponseEntity<>(bookRegisterService.findBookById(bookId),HttpStatus.OK);
+            return new ResponseEntity<>(bookRegisterService.findBookById(bookId), HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
-           throw new  ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{bookId}")
+    @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+    public void deleteBook(@PathVariable long bookId) {
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/activity/{bookId}")
+    public ResponseEntity changeActivity(@PathVariable long bookId) {
+        try {
+            return new ResponseEntity<>(bookRegisterService.updateBookActivity(bookId), HttpStatus.OK);
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
         }
     }
 }
