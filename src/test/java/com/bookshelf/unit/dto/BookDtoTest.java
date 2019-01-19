@@ -1,4 +1,4 @@
-package com.bookshelf.dto;
+package com.bookshelf.unit.dto;
 
 
 import org.junit.Before;

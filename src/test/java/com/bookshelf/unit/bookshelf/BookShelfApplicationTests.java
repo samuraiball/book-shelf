@@ -1,4 +1,4 @@
-package com.bookshelf.bookshelf;
+package com.bookshelf.unit.bookshelf;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

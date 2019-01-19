@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: booking a book
+  title: booking
   version: 0.0.1
 servers:
   - url: http:localhost:8081
@@ -36,8 +36,40 @@ paths:
           content:
             appication/json:
               schema:
-                $ref: "#/components/schemas/get_book"
-
+                $ref: '#/components/schemas/respnse_book'
+    delete:
+      summary: delete a book
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: parameter that to difine to delete tha book
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+      responses:
+        '204':
+          description: NO content
+  /book/activity/{bookId}:
+    put:
+      summary: change an activity
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: paramerter taha to difine to chaenge activity of book
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+      responses:
+        '200':
+          description: book that is changed the activity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/respnse_book'
 
 components:
   schemas:
@@ -53,7 +85,7 @@ components:
       required:
         - title
         - genre
-    get_book:
+    respnse_book:
       type: object
       properties:
         bookId:
@@ -65,3 +97,5 @@ components:
         genre:
           type: string
           example: IT
+        activity:
+          type: boolean

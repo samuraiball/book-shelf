@@ -1,4 +1,4 @@
-package com.bookshelf.dto;
+package com.bookshelf.unit.dto;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
