@@ -49,8 +49,13 @@ public class BookRegisterController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{bookId}")
-    @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable String bookId) {
+        try {
+            bookRegisterService.deleteBook(bookId);
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+        }
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/activity/{bookId}")

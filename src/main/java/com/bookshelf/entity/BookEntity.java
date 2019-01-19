@@ -1,13 +1,14 @@
 package com.bookshelf.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "books")
 public class BookEntity implements Serializable {
-
 
     @Id
     private String id;
@@ -20,6 +21,9 @@ public class BookEntity implements Serializable {
 
     @Column
     private boolean isActive;
+
+    @Column
+    private boolean isDeleted;
 
     public BookEntity() {
     }
@@ -70,13 +74,21 @@ public class BookEntity implements Serializable {
         return isActive;
     }
 
+    @JsonIgnore
+    public boolean isDeleted(){return isDeleted;}
+
     public void toggleActive() {
         this.isActive = !this.isActive;
+    }
+
+    public void deleteBook(){
+        this.isDeleted = true;
     }
 
     @PrePersist
     private void setActive() {
         this.isActive = true;
+        this.isDeleted = false;
     }
 
 }
