@@ -34,7 +34,7 @@ public class BookRegisterRepositoryTest {
 
     @Before
     public void setUp() {
-        bookEntity = new BookEntity(REGISTER_BOOK_ID,"Effective Java","IT");
+        bookEntity = new BookEntity(REGISTER_BOOK_ID,"Effective Java","description","IT");
     }
 
     @Test
@@ -48,6 +48,7 @@ public class BookRegisterRepositoryTest {
         assertThat(result.get("id"), is(REGISTER_BOOK_ID));
         assertThat(result.get("title"), is("Effective Java"));
         assertThat(result.get("genre"), is("IT"));
+        assertThat(result.get("description"), is("description"));
         assertThat(result.get("is_active"), is(true));
 
     }
@@ -60,6 +61,9 @@ public class BookRegisterRepositoryTest {
 
         assertThat(result.getId(), is(BOOK_ID));
         assertThat(result.getTitle(), is("WebAPI: The Good Part"));
+        assertThat(result.getDescription(), is("description"));
         assertThat(result.getGenre(), is("IT"));
+        assertThat(result.isActive(), is(true));
+        assertThat(result.isDeleted(), is(false));
     }
 }

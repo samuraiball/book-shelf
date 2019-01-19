@@ -20,6 +20,9 @@ public class BookEntity implements Serializable {
     private String genre;
 
     @Column
+    private String description;
+
+    @Column
     private boolean isActive;
 
     @Column
@@ -39,11 +42,26 @@ public class BookEntity implements Serializable {
         this.genre = genre;
     }
 
-    public BookEntity(String id, String title, String genre, boolean isActive) {
+    public BookEntity(String id, String title, String description, String genre) {
         this.id = id;
         this.title = title;
+        this.description = description;
+        this.genre = genre;
+    }
+
+    public BookEntity(String id, String title, String description, String genre, boolean isActive) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
         this.genre = genre;
         this.isActive = isActive;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTitle() {

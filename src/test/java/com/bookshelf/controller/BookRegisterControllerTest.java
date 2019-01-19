@@ -49,9 +49,9 @@ public class BookRegisterControllerTest {
     public void setup() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(bookRegisterController).build();
 
-        bookEntity = new BookEntity(BOOK_ID, "Effective Java", "IT", true);
+        BookDto bookDto = new BookDto("Effective Java", "http://localhost", "IT", "description");
+        bookEntity = new BookEntity(BOOK_ID, "Effective Java","description", "IT", true);
 
-        BookDto bookDto = new BookDto("Effective Java", "IT");
         bookJsonStringRequest = objectMapper.writeValueAsString(bookDto);
         bookJsonStringResponse = objectMapper.writeValueAsString(bookEntity);
     }

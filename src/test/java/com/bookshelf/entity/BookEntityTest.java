@@ -12,7 +12,8 @@ public class BookEntityTest {
 
     @Before
     public void setUp(){
-        bookEntity = new BookEntity("550e8400-e29b-41d4-a716-446655440000 ", "Effective Java", "IT", true);
+        bookEntity = new BookEntity("550e8400-e29b-41d4-a716-446655440000 ", "Effective Java",
+                "description","IT", true);
 
     }
 
