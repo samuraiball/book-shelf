@@ -1,0 +1,22 @@
+
+### 登録API
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+### 検索API
+GET  http://localhost:8081/book/a737c792-ef35-44ad-94e5-797736e5aa56
+
+### タグルアクティベイト
+PUT http://localhost:8081/book/activity/a737c792-ef35-44ad-94e5-797736e5aa56
+
+### 書籍の削除
+DELETE http://localhost:8081/book/a737c792-ef35-44ad-94e5-797736e5aa56
+
+###
