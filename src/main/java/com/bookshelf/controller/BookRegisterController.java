@@ -28,6 +28,8 @@ public class BookRegisterController {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(bookDto.getTitle());
         bookEntity.setGenre(bookDto.getGenre());
+        bookEntity.setDescription(bookDto.getDescription());
+        bookEntity.setUrl(bookDto.getUrl());
 
         BookEntity book = bookRegisterService.registerBook(bookEntity);
         URI location = uriBuilder.path("/book/{id}")
