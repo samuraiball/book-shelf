@@ -1,3 +1,16 @@
+### ログイン用
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+
+### ログアウト
+GET http://localhost:8081/logout
+
 
 ### 登録API
 POST http://localhost:8081/book
@@ -11,10 +24,10 @@ Content-Type: application/json
 }
 
 ### 検索API
-GET  http://localhost:8081/book/a737c792-ef35-44ad-94e5-797736e5aa56
+GET  http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
 
 ### タグルアクティベイト
-PUT http://localhost:8081/book/activity/a737c792-ef35-44ad-94e5-797736e5aa56
+PUT http://localhost:8081/book/activity/cdb8c070-889a-4f0e-a2cb-d352428f4811
 
 ### 書籍の削除
 DELETE http://localhost:8081/book/a737c792-ef35-44ad-94e5-797736e5aa56

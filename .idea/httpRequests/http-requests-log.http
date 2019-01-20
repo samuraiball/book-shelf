@@ -1,0 +1,445 @@
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+<> 2019-01-20T112155.201.json
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T111915.200.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezia@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T110823.200.json
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T110733.200.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T104530.404.json
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T104101.404.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T103954.404.json
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T103700.404.json
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T103548.404.json
+
+###
+
+GET http://localhost:8081/book/6bbeefd0-8657-45fd-b9ad-d9e195b1aed6
+
+<> 2019-01-20T103513.200.json
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+<> 2019-01-20T103455.201.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T102824.404.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T102414.400.html
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+GET http://localhost:8081/book/550e8400-e29b-41d4-a716-446655440000
+
+<> 2019-01-20T101942.404.json
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T100515.400.html
+
+###
+
+POST http://localhost:8081/login
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T092249.400.html
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+POST http://localhost:8081/login
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T092153.400.html
+
+###
+
+POST http://localhost:8081/login
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T092134.400.html
+
+###
+
+POST http://localhost:8081/login
+{:
+  "email": "mohezi@example.com",
+  "password": "password"
+}:
+
+<> 2019-01-20T091103.400.html
+
+###
+
+POST http://localhost:8081/login
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+
+{
+  "email": "mohezi@example.com",
+  "password": "password"
+}
+
+###
+
+POST http://localhost:8081/login
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+POST http://localhost:8081/login
+
+<> 2019-01-20T085918.404.json
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+POST http://localhost:8081/book
+Content-Type: application/json
+
+{
+  "title": "Effective Java",
+  "url": "http://localhost",
+  "description": "this is description",
+  "genre": "IT"
+}
+
+###
+
+PUT http://localhost:8081/book/activity/cdb8c070-889a-4f0e-a2cb-d352428f4811
+
+<> 2019-01-20T085349.200.json
+
+###
+
+GET http://localhost:8081/book/cdb8c070-889a-4f0e-a2cb-d352428f4811
+
+<> 2019-01-20T085345.200.json
+
+###
+
