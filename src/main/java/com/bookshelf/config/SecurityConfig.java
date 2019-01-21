@@ -20,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .mvcMatchers("/book/*").hasAnyRole("USER", "ADMIN");
+                .mvcMatchers("/book/*").hasAnyRole("USER", "ADMIN")
+                .mvcMatchers("/book").hasAnyRole("USER", "ADMIN");
 
         JsonUserPassAuthFilter jsonUserPassAuthFilter = new JsonUserPassAuthFilter(authenticationManager());
         jsonUserPassAuthFilter.setPasswordParameter("password");

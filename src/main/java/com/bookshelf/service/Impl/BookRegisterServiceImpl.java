@@ -1,8 +1,9 @@
-package com.bookshelf.service;
+package com.bookshelf.service.Impl;
 
 import com.bookshelf.entity.BookEntity;
 import com.bookshelf.repository.BookRegisterRepository;
 import com.bookshelf.exception.ResourceNotFoundException;
+import com.bookshelf.service.BookRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

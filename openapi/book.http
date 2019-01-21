@@ -1,3 +1,14 @@
+### ユーザ登録
+POST http://localhost:8081/user
+Content-Type: application/json
+
+{
+  "email": "mohezi@example.com",
+  "password": "password",
+  "username": "辺野 もへ子"
+}
+
+
 ### ログイン用
 POST http://localhost:8081/login
 Content-Type: application/json
