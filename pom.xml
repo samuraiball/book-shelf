@@ -11,7 +11,7 @@
     <groupId>com.book-shelf</groupId>
     <artifactId>book-shelf</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <username>book-shelf</username>
+    <name>book-shelf</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
