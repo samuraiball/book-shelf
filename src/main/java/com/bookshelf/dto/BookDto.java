@@ -8,7 +8,6 @@ import java.io.Serializable;
  */
 public class BookDto implements Serializable {
 
-
     @NotEmpty
     @Size(max = 100)
     private String title;

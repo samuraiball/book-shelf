@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: User management
+  version: 0.0.1
+servers:
+  - url: http:localhost:8081
+    description: local execution
+paths:
+  /login:
+    summary: login
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/login"
+      responses:
+        '200':
+          description: Login success
+        '401':
+          description: Login falure
+  /logout:
+    get:
+      summary: logout
+      responses:
+        '200':
+          description: Logout success
+  /user:
+    summary: create a user
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user"
+      responses:
+        '201':
+          description: user created
+
+components:
+  schemas:
+    login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: mohezi@example.com
+        password:
+          type: string
+          example: password
+      required:
+        - email
+        - password
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+          example: mohezi@example.com
+        password:
+          type: string
+          example: password
+        username:
+          type: string
+          example: 辺野 もへ子
+
+      required:
+        - email
+        - password
+        - username

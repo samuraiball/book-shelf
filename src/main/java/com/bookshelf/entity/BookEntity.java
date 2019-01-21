@@ -23,6 +23,9 @@ public class BookEntity implements Serializable {
     private String description;
 
     @Column
+    private String url;
+
+    @Column
     private boolean isActive;
 
     @Column
@@ -86,6 +89,14 @@ public class BookEntity implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public boolean isActive() {
