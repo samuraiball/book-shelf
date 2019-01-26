@@ -36,7 +36,7 @@ public class UserController {
         try {
             createdUserEntity = userService.createUser(userEntity);
         } catch (UserAlreadyExistException e) {
-            throw  new ResponseStatusException(HttpStatus.CONFLICT, "User Already exist", e);
+            throw  new ResponseStatusException(HttpStatus.CONFLICT, "User already exist", e);
         }
 
         UserResponseDto userResponseDto = new UserResponseDto();

@@ -1,5 +1,6 @@
 package com.bookshelf.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
@@ -9,6 +10,7 @@ public class UserDto implements Serializable {
     private String username;
 
     @NotEmpty
+    @Email
     private String email;
 
     @NotEmpty
