@@ -12,7 +12,8 @@ public class BookDto implements Serializable {
     @Size(max = 100)
     private String title;
 
-    @Pattern(regexp = "^(https?|http)(:\\/\\/[-_.!~*\\'()a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+)$")
+    @Pattern(regexp = "^(https?|http)(:\\/\\/[-_.!~*\\'()a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+)$",
+            message = "dose not match URL Pattern")
     private String url;
 
 
