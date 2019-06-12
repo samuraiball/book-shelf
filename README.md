@@ -9,5 +9,6 @@ this is the web api that register what you want to read and have read.
 * create error handling controller advance
 * use RouterFunction
 * fix tests that failed 
-* use Junit 5
+* use Junit 5 instead of 4
+* use doma  instead of JPA
 
