@@ -1,8 +1,8 @@
-package com.bookshelf.service;
+package com.bookshelf.model.service;
 
 
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.repository.BookRegisterRepository;
+import com.bookshelf.model.entity.BookEntity;
+import com.bookshelf.model.repository.BookRegisterRepository;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;

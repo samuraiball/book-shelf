@@ -1,13 +1,15 @@
 package com.bookshelf.controller;
 
-import com.bookshelf.dto.BookDto;
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.service.BookRegisterService;
+import com.bookshelf.model.dto.BookDto;
+import com.bookshelf.model.entity.BookEntity;
+import com.bookshelf.security.MyUserDetails;
+import com.bookshelf.model.service.BookRegisterService;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,53 +21,57 @@ import java.net.URI;
 @RequestMapping("/book")
 public class BookRegisterController {
 
-    @Autowired
-    private BookRegisterService bookRegisterService;
+	@Autowired
+	private BookRegisterService bookRegisterService;
 
 
-    @PostMapping
-    public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, UriComponentsBuilder uriBuilder) {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setTitle(bookDto.getTitle());
-        bookEntity.setGenre(bookDto.getGenre());
-        bookEntity.setDescription(bookDto.getDescription());
-        bookEntity.setUrl(bookDto.getUrl());
+	@PostMapping
+	public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, @AuthenticationPrincipal MyUserDetails userDetails,
+									   UriComponentsBuilder uriBuilder) {
+		String username = userDetails.getUsername();
 
-        BookEntity book = bookRegisterService.registerBook(bookEntity);
-        URI location = uriBuilder.path("/book/{id}")
-                .buildAndExpand(book.getId())
-                .toUri();
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(location);
-        return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
-    }
+		BookEntity bookEntity = new BookEntity();
+		bookEntity.setTitle(bookDto.getTitle());
+		bookEntity.setGenre(bookDto.getGenre());
+		bookEntity.setDescription(bookDto.getDescription());
+		bookEntity.setUrl(bookDto.getUrl());
 
-    @RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
-    public ResponseEntity getBook(@PathVariable String bookId) {
-        try {
-            return new ResponseEntity<>(bookRegisterService.findBookById(bookId), HttpStatus.OK);
-        } catch (ResourceNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
-        }
-    }
+		BookEntity book = bookRegisterService.registerBook(bookEntity);
+		URI location = uriBuilder.path("/book/{id}")
+				.buildAndExpand(book.getId())
+				.toUri();
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{bookId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBook(@PathVariable String bookId) {
-        try {
-            bookRegisterService.deleteBook(bookId);
-        } catch (ResourceNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
-        }
-    }
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(location);
+		return new ResponseEntity<>(book, headers, HttpStatus.CREATED);
+	}
 
-    @RequestMapping(method = RequestMethod.PUT, path = "/activity/{bookId}")
-    public ResponseEntity changeActivity(@PathVariable String bookId) {
-        try {
-            return new ResponseEntity<>(bookRegisterService.updateBookActivity(bookId), HttpStatus.OK);
-        } catch (ResourceNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
-        }
-    }
+	@RequestMapping(method = RequestMethod.GET, path = "/{bookId}")
+	public ResponseEntity getBook(@PathVariable String bookId) {
+		try {
+			return new ResponseEntity<>(bookRegisterService.findBookById(bookId), HttpStatus.OK);
+		} catch (ResourceNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+		}
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, path = "/{bookId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteBook(@PathVariable String bookId) {
+		try {
+			bookRegisterService.deleteBook(bookId);
+		} catch (ResourceNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+		}
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, path = "/activity/{bookId}")
+	public ResponseEntity changeActivity(@PathVariable String bookId) {
+		try {
+			return new ResponseEntity<>(bookRegisterService.updateBookActivity(bookId), HttpStatus.OK);
+		} catch (ResourceNotFoundException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found", e);
+		}
+	}
 }
