@@ -3,4 +3,11 @@ this is the web api that register what you want to read and have read.
 
 
 # how to use
-TODO
+
+# todo
+* write 'how to use'
+* create error handling controller advance
+* use RouterFunction
+* fix tests that failed 
+* use Junit 5
+
