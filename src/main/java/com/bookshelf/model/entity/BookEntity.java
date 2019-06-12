@@ -1,4 +1,4 @@
-package com.bookshelf.entity;
+package com.bookshelf.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

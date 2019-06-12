@@ -1,4 +1,4 @@
-package com.bookshelf.entity;
+package com.bookshelf.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.bookshelf.dto;
+package com.bookshelf.model.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

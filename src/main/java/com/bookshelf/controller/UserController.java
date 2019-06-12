@@ -1,11 +1,10 @@
 package com.bookshelf.controller;
 
-import com.bookshelf.dto.UserDto;
-import com.bookshelf.dto.UserResponseDto;
-import com.bookshelf.entity.UserEntity;
+import com.bookshelf.model.dto.UserDto;
+import com.bookshelf.model.dto.UserResponseDto;
+import com.bookshelf.model.entity.UserEntity;
 import com.bookshelf.exception.UserAlreadyExistException;
-import com.bookshelf.repository.UserRepository;
-import com.bookshelf.service.UserService;
+import com.bookshelf.model.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

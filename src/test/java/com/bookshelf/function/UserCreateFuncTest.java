@@ -1,8 +1,8 @@
 package com.bookshelf.function;
 
-import com.bookshelf.entity.UserEntity;
+import com.bookshelf.model.entity.UserEntity;
 import com.bookshelf.exception.UserAlreadyExistException;
-import com.bookshelf.service.UserService;
+import com.bookshelf.model.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

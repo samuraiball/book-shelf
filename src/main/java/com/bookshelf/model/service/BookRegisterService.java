@@ -1,6 +1,6 @@
-package com.bookshelf.service;
+package com.bookshelf.model.service;
 
-import com.bookshelf.entity.BookEntity;
+import com.bookshelf.model.entity.BookEntity;
 
 public interface BookRegisterService {
     BookEntity registerBook(BookEntity bookEntity);

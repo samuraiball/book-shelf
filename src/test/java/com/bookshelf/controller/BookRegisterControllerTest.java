@@ -1,8 +1,8 @@
 package com.bookshelf.controller;
 
-import com.bookshelf.dto.BookDto;
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.service.BookRegisterService;
+import com.bookshelf.model.dto.BookDto;
+import com.bookshelf.model.entity.BookEntity;
+import com.bookshelf.model.service.BookRegisterService;
 import com.bookshelf.exception.ResourceNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@ContextConfiguration
 public class BookRegisterControllerTest {
 
     @Autowired
@@ -56,7 +60,16 @@ public class BookRegisterControllerTest {
         bookJsonStringResponse = objectMapper.writeValueAsString(bookEntity);
     }
 
+    @Test(expected = AuthenticationException.class)
+    public void 認証前() throws Exception{
+        when(bookRegisterService.findBookById(BOOK_ID)).thenReturn(bookEntity);
+        mockMvc.perform(get("/book/" + BOOK_ID))
+                .andExpect(content().json(bookJsonStringResponse))
+                .andExpect(status().isOk());
+    }
+
     @Test
+    @WithMockUser(username = "")
     public void create_正常系_本の登録_201のレスポンス() throws Exception {
 
         when(bookRegisterService.registerBook(any())).thenReturn(bookEntity);

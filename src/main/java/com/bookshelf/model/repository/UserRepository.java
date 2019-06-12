@@ -1,6 +1,6 @@
-package com.bookshelf.repository;
+package com.bookshelf.model.repository;
 
-import com.bookshelf.entity.UserEntity;
+import com.bookshelf.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

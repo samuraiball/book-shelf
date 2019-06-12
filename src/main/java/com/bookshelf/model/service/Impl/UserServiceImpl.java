@@ -1,9 +1,9 @@
-package com.bookshelf.service.Impl;
+package com.bookshelf.model.service.Impl;
 
-import com.bookshelf.entity.UserEntity;
+import com.bookshelf.model.entity.UserEntity;
 import com.bookshelf.exception.UserAlreadyExistException;
-import com.bookshelf.repository.UserRepository;
-import com.bookshelf.service.UserService;
+import com.bookshelf.model.repository.UserRepository;
+import com.bookshelf.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

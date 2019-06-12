@@ -1,13 +1,15 @@
 package com.bookshelf.controller;
 
-import com.bookshelf.dto.BookDto;
-import com.bookshelf.entity.BookEntity;
-import com.bookshelf.service.BookRegisterService;
+import com.bookshelf.model.dto.BookDto;
+import com.bookshelf.model.entity.BookEntity;
+import com.bookshelf.security.MyUserDetails;
+import com.bookshelf.model.service.BookRegisterService;
 import com.bookshelf.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,7 +26,11 @@ public class BookRegisterController {
 
 
     @PostMapping
-    public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity registerBook(@RequestBody @Valid BookDto bookDto, @AuthenticationPrincipal MyUserDetails userDetails,
+                                       UriComponentsBuilder uriBuilder) {
+        String username = userDetails.getUsername();
+
+
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(bookDto.getTitle());
         bookEntity.setGenre(bookDto.getGenre());

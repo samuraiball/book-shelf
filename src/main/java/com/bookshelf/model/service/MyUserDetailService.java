@@ -1,8 +1,8 @@
-package com.bookshelf.service;
+package com.bookshelf.model.service;
 
 
-import com.bookshelf.entity.UserEntity;
-import com.bookshelf.repository.UserRepository;
+import com.bookshelf.model.entity.UserEntity;
+import com.bookshelf.model.repository.UserRepository;
 import com.bookshelf.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

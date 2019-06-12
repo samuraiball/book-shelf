@@ -1,6 +1,6 @@
-package com.bookshelf.repository;
+package com.bookshelf.model.repository;
 
-import com.bookshelf.entity.BookEntity;
+import com.bookshelf.model.entity.BookEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
