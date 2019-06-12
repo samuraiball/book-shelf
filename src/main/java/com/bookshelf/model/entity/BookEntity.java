@@ -10,114 +10,117 @@ import java.io.Serializable;
 @Table(name = "books")
 public class BookEntity implements Serializable {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @Column
-    private String title;
+	@Column
+	private String title;
 
-    @Column
-    private String genre;
+	@Column
+	private String genre;
 
-    @Column
-    private String description;
+	@Column
+	private String description;
 
-    @Column
-    private String url;
+	@Column
+	private String url;
 
-    @Column
-    private boolean isActive;
+	@Column
+	private boolean isActive;
 
-    @Column
-    private boolean isDeleted;
+	@Column
+	private boolean isDeleted;
 
-    public BookEntity() {
-    }
+	public BookEntity() {
+	}
 
-    public BookEntity(String title, String genre) {
-        this.title = title;
-        this.genre = genre;
-    }
+	public BookEntity(String title, String genre) {
+		this.title = title;
+		this.genre = genre;
+	}
 
-    public BookEntity(String id, String title, String genre) {
-        this.id = id;
-        this.title = title;
-        this.genre = genre;
-    }
+	public BookEntity(String id, String title, String genre) {
+		this.id = id;
+		this.title = title;
+		this.genre = genre;
+	}
 
-    public BookEntity(String id, String title, String description, String genre) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.genre = genre;
-    }
+	public BookEntity(String id, String title, String description, String genre) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+	}
 
-    public BookEntity(String id, String title, String description, String genre, boolean isActive) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.genre = genre;
-        this.isActive = isActive;
-    }
-    public String getDescription() {
-        return description;
-    }
+	public BookEntity(String id, String title, String description, String genre, boolean isActive) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+		this.isActive = isActive;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getGenre() {
-        return genre;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+	public String getGenre() {
+		return genre;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public boolean isActive() {
-        return isActive;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    @JsonIgnore
-    public boolean isDeleted(){return isDeleted;}
+	public boolean isActive() {
+		return isActive;
+	}
 
-    public void toggleActive() {
-        this.isActive = !this.isActive;
-    }
+	@JsonIgnore
+	public boolean isDeleted() {
+		return isDeleted;
+	}
 
-    public void deleteBook(){
-        this.isDeleted = true;
-    }
+	public void toggleActive() {
+		this.isActive = !this.isActive;
+	}
 
-    @PrePersist
-    private void setActive() {
-        this.isActive = true;
-        this.isDeleted = false;
-    }
+	public void deleteBook() {
+		this.isDeleted = true;
+	}
+
+	@PrePersist
+	private void setActive() {
+		this.isActive = true;
+		this.isDeleted = false;
+	}
 
 }

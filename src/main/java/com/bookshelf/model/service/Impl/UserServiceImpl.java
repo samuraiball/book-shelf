@@ -13,19 +13,19 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserEntity createUser(UserEntity userEntity) {
-        UserEntity findUser = userRepository.findUserByEmail(userEntity.getEmail());
-        if (findUser != null) throw new UserAlreadyExistException("user already exist");
-        userEntity.setId(UUID.randomUUID().toString());
-        userEntity.setRole("ROLE_USER");
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        return userRepository.saveAndFlush(userEntity);
-    }
+	@Override
+	public UserEntity createUser(UserEntity userEntity) {
+		UserEntity findUser = userRepository.findUserByEmail(userEntity.getEmail());
+		if (findUser != null) throw new UserAlreadyExistException("user already exist");
+		userEntity.setId(UUID.randomUUID().toString());
+		userEntity.setRole("ROLE_USER");
+		userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+		return userRepository.saveAndFlush(userEntity);
+	}
 }

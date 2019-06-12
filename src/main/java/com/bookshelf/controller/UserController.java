@@ -21,26 +21,26 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity create(@RequestBody @Valid UserDto userDto) {
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity create(@RequestBody @Valid UserDto userDto) {
 
-        UserEntity userEntity = new UserEntity();
+		UserEntity userEntity = new UserEntity();
 
-        BeanUtils.copyProperties(userDto, userEntity);
+		BeanUtils.copyProperties(userDto, userEntity);
 
-        UserEntity createdUserEntity = null;
-        try {
-            createdUserEntity = userService.createUser(userEntity);
-        } catch (UserAlreadyExistException e) {
-            throw  new ResponseStatusException(HttpStatus.CONFLICT, "User already exist", e);
-        }
+		UserEntity createdUserEntity = null;
+		try {
+			createdUserEntity = userService.createUser(userEntity);
+		} catch (UserAlreadyExistException e) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exist", e);
+		}
 
-        UserResponseDto userResponseDto = new UserResponseDto();
+		UserResponseDto userResponseDto = new UserResponseDto();
 
-        BeanUtils.copyProperties(createdUserEntity, userResponseDto);
-        return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
-    }
+		BeanUtils.copyProperties(createdUserEntity, userResponseDto);
+		return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
+	}
 }

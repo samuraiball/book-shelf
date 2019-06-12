@@ -9,71 +9,71 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class UserEntity {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @Column
-    private String email;
+	@Column
+	private String email;
 
-    @Column
-    private String password;
-
-
-    @Column
-    private String username;
-
-    @Column
-    private String role;
-
-    public UserEntity(){
-    }
-
-    public UserEntity(String id, String email, String password, String username, String role) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.role = role;
-    }
+	@Column
+	private String password;
 
 
-    public String getUsername() {
-        return username;
-    }
+	@Column
+	private String username;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	@Column
+	private String role;
 
-    public String getId() {
-        return id;
-    }
+	public UserEntity() {
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public UserEntity(String id, String email, String password, String username, String role) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.username = username;
+		this.role = role;
+	}
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

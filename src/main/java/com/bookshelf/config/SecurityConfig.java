@@ -14,34 +14,34 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
+		http.csrf().disable();
 
-        http.authorizeRequests()
-                .mvcMatchers("/book/*").hasAnyRole("USER", "ADMIN")
-                .mvcMatchers("/book").hasAnyRole("USER", "ADMIN");
+		http.authorizeRequests()
+				.mvcMatchers("/book/*").hasAnyRole("USER", "ADMIN")
+				.mvcMatchers("/book").hasAnyRole("USER", "ADMIN");
 
-        JsonUserPassAuthFilter jsonUserPassAuthFilter = new JsonUserPassAuthFilter(authenticationManager());
-        jsonUserPassAuthFilter.setPasswordParameter("password");
-        jsonUserPassAuthFilter.setUsernameParameter("email");
+		JsonUserPassAuthFilter jsonUserPassAuthFilter = new JsonUserPassAuthFilter(authenticationManager());
+		jsonUserPassAuthFilter.setPasswordParameter("password");
+		jsonUserPassAuthFilter.setUsernameParameter("email");
 
-        jsonUserPassAuthFilter
-                .setAuthenticationFailureHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_UNAUTHORIZED));
-        jsonUserPassAuthFilter
-                .setAuthenticationSuccessHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_OK));
+		jsonUserPassAuthFilter
+				.setAuthenticationFailureHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_UNAUTHORIZED));
+		jsonUserPassAuthFilter
+				.setAuthenticationSuccessHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_OK));
 
-        http.addFilterAt(jsonUserPassAuthFilter, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterAt(jsonUserPassAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+		http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
 
-        http.exceptionHandling().accessDeniedHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_FORBIDDEN));
+		http.exceptionHandling().accessDeniedHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_FORBIDDEN));
 
-        http
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpServletResponse.SC_OK))
-                .invalidateHttpSession(true);
-    }
+		http
+				.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpServletResponse.SC_OK))
+				.invalidateHttpSession(true);
+	}
 }
